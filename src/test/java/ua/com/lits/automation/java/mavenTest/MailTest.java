@@ -25,23 +25,23 @@ public class MailTest {
 	@Parameters({ "browserName" })
 	public void setUp(String browserName) throws Exception {
 		driver = WebDriverFactory.getInstance(browserName);
-		Wait.waitTimeUnit(driver, 90, TimeUnit.SECONDS);
-		driver.get("https://mail.google.com");
-		Wait.waitUntil(driver);
+		Wait.waitTimeUnit(driver, 30, TimeUnit.SECONDS);
+		driver.get("https://accounts.google.com/ServiceLogin?service=mail&continue=https://mail.google.com/mail/#identifier");
+		Wait.waitUntil(driver, ".//*");
 		driver.manage().window().maximize();
-		Wait.waitUntil(driver);
+		Wait.waitUntil(driver, "//input[@type='email']");
 		driver.findElement(By.xpath("//input[@type='email']")).sendKeys("r.test231@gmail.com");
-		Wait.waitUntil(driver);
+		Wait.waitUntil(driver, "//input[@type='submit'][ancestor::div]");
 		driver.findElement(By.xpath("//input[@type='submit'][ancestor::div]")).click();
-		Wait.waitUntil(driver);
+		Wait.waitUntil(driver, ".//input[@id='Passwd']");
 		driver.findElement(By.xpath(".//input[@id='Passwd']")).clear();
-		Wait.waitUntil(driver);
+		Wait.waitUntil(driver, ".//input[@id='Passwd']");
 		driver.findElement(By.xpath(".//input[@id='Passwd']")).sendKeys("test231test231");
-		Wait.waitUntil(driver);
+		Wait.waitUntil(driver, ".//*[@id='signIn']");
 		driver.findElement(By.xpath(".//*[@id='signIn']")).click();
-		Wait.waitUntil(driver);
 		webElementInput = driver.findElement(By.xpath(".//input[@id='gbqfq']"));
 		webElementButtom = driver.findElement(By.xpath(".//button[@id='gbqfb']"));
+		Wait.waitUntil(driver, ".//input[@id='gbqfq']");
 		
 	}
 
@@ -50,11 +50,9 @@ public class MailTest {
 	@Test
 	@Parameters({ "subjectText" })
 	public void checkingMailOnAvailabilityLetterTest(String subjectText) throws InterruptedException {
-		Wait.waitUntil(driver);
 		webElementInput.sendKeys(subjectText);
-		Wait.waitUntil(driver);
 		webElementButtom.click();
-		Wait.waitUntil(driver);
+		Wait.waitUntil(driver, ".//*[contains(text(), '')]");
 		List<WebElement> tableRows = driver.findElements(By.xpath(".//div [@gh]//td [@tabindex]"));
 		Assert.assertEquals(
 				tableRows.get(0).findElement(By.xpath(".//*[contains(text(),'Hello User')]")).getText().toString(),
@@ -64,10 +62,9 @@ public class MailTest {
 	@Test
 	@Parameters({ "subjectText" })
 	public void checkingMailForAbsenceLetterTest(String subjectText) throws InterruptedException {
-		Wait.waitUntil(driver);
 		webElementInput.sendKeys(subjectText + "123213");
 		webElementButtom.click();
-		Wait.waitUntil(driver);
+		Wait.waitUntil(driver, ".//div[@id=':2']//div[@class='BltHke nH oy8Mbf' and @role='main']");
 		Assert.assertTrue(
 				driver.findElement(By.xpath(".//div[@id=':2']//div[@class='BltHke nH oy8Mbf' and @role='main']"))
 						.getAttribute("role").equals("main"));

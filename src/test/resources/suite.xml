@@ -10,7 +10,7 @@
 			<class name="ua.com.lits.automation.java.mavenTest.MailTest" />
 		</classes>
 	</test>
-	<test name="TestSuiteFirefox" verbose="1" annotations="JDK"
+	<!-- <test name="TestSuiteFirefox" verbose="1" annotations="JDK"
 		thread-count="7" parallel="classes">
 		<parameter name="browserName" value="firefox" />
 		<classes>
@@ -23,5 +23,5 @@
 		<classes>
 			<class name="ua.com.lits.automation.java.mavenTest.MailTest" />
 		</classes>
-	</test>
+	</test>-->
 </suite>
