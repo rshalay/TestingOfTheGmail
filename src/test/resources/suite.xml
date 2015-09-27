@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="SuiteTest" parallel="classes" thread-count="7"
+	configfailurepolicy="continue">
+	<parameter name="subjectText" value="Hello User" />
+	<test name="TestSuiteIE" verbose="1" annotations="JDK"
+		thread-count="7" parallel="classes">
+		<parameter name="browserName" value="ie" />
+		<classes>
+			<class name="ua.com.lits.automation.java.mavenTest.MailTest" />
+		</classes>
+	</test>
+	<test name="TestSuiteFirefox" verbose="1" annotations="JDK"
+		thread-count="7" parallel="classes">
+		<parameter name="browserName" value="firefox" />
+		<classes>
+			<class name="ua.com.lits.automation.java.mavenTest.MailTest" />
+		</classes>
+	</test>
+	<test name="TestSuiteChrome" verbose="1" annotations="JDK"
+		thread-count="7" parallel="classes">
+		<parameter name="browserName" value="chrome" />
+		<classes>
+			<class name="ua.com.lits.automation.java.mavenTest.MailTest" />
+		</classes>
+	</test>
+</suite>
